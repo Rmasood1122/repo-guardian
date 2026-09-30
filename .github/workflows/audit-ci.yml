@@ -1,0 +1,13 @@
+# audit-ci — the tools are proven against planted defects on a machine that
+# isn't the author's, on every push. Green-at-destination is the only green.
+name: audit-ci
+on:
+  push:
+  pull_request:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: smoke — planted defects must be caught (U1-U4 + tracked_artifact + history scan)
+        run: bash scripts/smoke.sh

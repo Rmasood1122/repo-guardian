@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# commit-msg hook — the structural answer to commit-convention decay under pressure.
+# Install: cp kit/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg
+msg="$(head -1 "$1")"
+if echo "$msg" | grep -qE '^(feat|fix|docs|chore|test|refactor|audit|ci)(\([a-z0-9_-]+\))?: .{3,}'; then
+  exit 0
+fi
+# Merge/revert/fixup commits pass through
+echo "$msg" | grep -qE '^(Merge|Revert|fixup!|squash!)' && exit 0
+echo "REJECTED (commit-msg hook): message must start with feat|fix|docs|chore|test|refactor|audit|ci, e.g. 'fix: guard empty HEAD'" >&2
+echo "Your message: $msg" >&2
+exit 1

@@ -1,0 +1,27 @@
+name: First-run feedback
+description: Ran the auditor? Two minutes here improves the fixtures for everyone.
+labels: [feedback]
+body:
+  - type: input
+    id: os
+    attributes:
+      label: OS + bash version
+      placeholder: "e.g. Windows 11 Git Bash 5.2 / macOS 14 brew bash 5.2"
+    validations: { required: true }
+  - type: input
+    id: minutes
+    attributes:
+      label: Minutes from clone to first report
+      placeholder: "e.g. 9 — or where you got stuck instead"
+    validations: { required: true }
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Blockers hit (count + what they were)
+      placeholder: "0, or list them"
+    validations: { required: true }
+  - type: textarea
+    id: findings
+    attributes:
+      label: Anything the audit got wrong? (false positive / missed defect)
+      placeholder: "Redact anything sensitive — never paste a real secret here."
